@@ -1,20 +1,26 @@
 #!/bin/bash -x
 
-echo "Welcome to the game TIC-TAC-TOE"
+echo "Welcome to Tic-Tac-Toe Game"
 
-declare -A board
+declare -a board
 
-function resetBoard(){
-for((i=1;i<=9;i++))
-do
-	board[$i]=" " 
-done
+TOTAL_CELL=9
+
+cell=0
+letter="O"
+flag=0
+
+resetBoard(){
+	for((i=1;i<=9;i++))
+	do
+		board[i]=$i
+	done
 }
 
-function displayBoard(){
-echo "| ${board[1]} | ${board[2]} | ${board[3]} |"
-echo "| ${board[4]} | ${board[5]} | ${board[6]} |"
-echo "| ${board[7]} | ${board[8]} | ${board[9]} |"
+displayBoard(){
+	echo "| ${board[1]} | ${board[2]} | ${board[3]} |"
+	echo "| ${board[4]} | ${board[5]} | ${board[6]} |"
+	echo "| ${board[7]} | ${board[8]} | ${board[9]} |"
 }
 
 whoPlayFirst(){
