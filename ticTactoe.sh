@@ -40,8 +40,28 @@ displayBoard
 checkEmptyCell
 }
 
+function checkForWin(){
+	j=0
+	for((i=1;i<=3;i++))
+	do
+		if [[ ( ${board[i+j]} == ${board[i+j+1]} && ${board[i+j+1]} == ${board[i+j+2]} ) ||
+			( ${board[i]} == ${board[i+3]} && ${board[i+3]} == ${board[i+6]} ) ||
+			( ${board[1]} == ${board[5]} && ${board[5]} == ${board[9]} ) ||
+			( ${board[3]} == ${board[5]} && ${board[5]} == ${board[7]} ) ]]
+		then
+			echo "Player Won"
+			exit
+		fi
+		j=$((j+2))
+	done
+}
+
 resetBoard
 displayBoard
 toss
-checkEmptyCell
 
+while (( count<9 ))
+do
+	checkEmptyCell
+	checkForWin
+done
