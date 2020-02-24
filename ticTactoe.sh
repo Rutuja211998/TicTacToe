@@ -9,14 +9,14 @@ TOTAL_CELL=9
 cell=0
 flag=0
 
-function resetBoard(){
+resetBoard(){
 	for((i=1;i<=9;i++))
 	do
    	board[i]=$i
 	done
 }
 
-function displayBoard(){
+displayBoard(){
 	echo "| ${board[1]} | ${board[2]} | ${board[3]} |"
 	echo "| ${board[4]} | ${board[5]} | ${board[6]} |"
 	echo "| ${board[7]} | ${board[8]} | ${board[9]} |"
@@ -49,7 +49,6 @@ do
 		userTurn
 	fi
 done
-
 if (( cell == TOTAL_CELL ))
 then
 	echo "Game Tie"
@@ -71,6 +70,7 @@ function computerTurn(){
 	echo "$player"
 	checkSelfWin $computerLetter
 	checkSelfWin $userLetter
+	checkForCorner
 	cellNumber=$((RANDOM%9+1))
 	echo "random position entered by computer is : $cellNumber"
 	checkEmptyCell $cellNumber
@@ -78,6 +78,16 @@ function computerTurn(){
 	then
 		computerTurn
 	fi
+}
+
+function checkForCorner(){
+for((i=1;i<=9;i=i+2))
+do
+	if (( i!=5 ))
+	then
+		checkEmptyCell $i
+	fi
+done
 }
 
 function checkSelfWin(){
@@ -162,7 +172,7 @@ function checkForWin(){
 			( ${board[3]} == ${board[5]} && ${board[5]} == ${board[7]} ) ]]
 		then
 			echo "$player Won"
-			exit
+		exit
 		fi
 		j=$((j+2))
 	done
