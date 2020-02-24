@@ -25,6 +25,23 @@ else
 	playerLetter="O"
 fi
 }
-toss
+
+function checkEmptyCell(){
+read -p "Enter Cell Number: " cellNumber
+
+   if [ "${board[$cellNumber]}" == " " ]
+   then
+      echo "Cell is Empty"
+      board[$cellNumber]=$playerLetter
+   else
+      echo "Cell is not Empty"
+   fi
+displayBoard
+checkEmptyCell
+}
+
 resetBoard
 displayBoard
+toss
+checkEmptyCell
+
