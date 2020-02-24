@@ -4,26 +4,27 @@ echo "Welcome to the game TIC-TAC-TOE"
 
 declare -A board
 
-resetBoard(){
+function resetBoard(){
 for((i=1;i<=9;i++))
 do
 	board[$i]=" " 
 done
 }
 
-displayBoard(){
+function displayBoard(){
 echo "| ${board[1]} | ${board[2]} | ${board[3]} |"
 echo "| ${board[4]} | ${board[5]} | ${board[6]} |"
 echo "| ${board[7]} | ${board[8]} | ${board[9]} |"
 }
 
-function assignLetter(){
+function toss(){
 if (( $((RANDOM%2))==1 ))
 then
-	letter='X'
+	playerLetter="X"
 else
-	letter='O'
+	playerLetter="O"
 fi
-echo your letter is $letter
 }
-
+toss
+resetBoard
+displayBoard
