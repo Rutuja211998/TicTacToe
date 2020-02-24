@@ -12,7 +12,7 @@ flag=0
 function resetBoard(){
 for((i=1;i<=9;i++))
 do
-	board[i]=$i
+   	board[i]=$i
 done
 }
 
@@ -72,9 +72,7 @@ function computerTurn(){
 	checkSelfWin $userLetter
 	checkForCorner
 	checkForCenter
-	cellNumber=$((RANDOM%9+1))
-	echo "random position entered by computer is : $cellNumber"
-	checkEmptyCell $cellNumber
+	checkForSides	
 	if (( flag==1 ))
 	then
 		computerTurn
@@ -93,6 +91,13 @@ done
 
 function checkForCenter(){
 checkEmptyCell $((TOTAL_CELL/2 + 1))
+}
+
+checkForSides(){
+for((i=2;i<=8;i=i+2))
+do
+	checkEmptyCell $i
+done
 }
 
 function checkSelfWin(){
@@ -186,5 +191,4 @@ function checkForWin(){
 resetBoard
 displayBoard
 whoPlayFirst
-
 
